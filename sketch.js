@@ -12,8 +12,10 @@ function setup() {
     for (let col = gridSize; col <= height - gridSize; col += gridSize) {
       size = random(0.3,.5);
       zebra(row, col, size);
-      fill( random(0,255), random(0,255), random(0,255),.5 );
+      push();
+      fill( random(0,255), random(0,255), random(0,255), 100);
       rect(row,col,50,50);
+      pop();
       
     }
   }
