@@ -13,9 +13,10 @@ function draw(){
     for (let col = gridSize; col <= height - gridSize; col += gridSize) {
       size = random(0.3,.5);
       var thisSize = size * (0.2 + 2 * noise(row + 3, col + 0.5));
-      var c = color(225, 225 * noise(row + 2, col), 225,200);
+      var c = color(noise(row,col), 225 * noise(row + 2, col), 225,200);
       var turnDir = (noise(row,col) > 0.5);
       zebraTime(row,col,thisSize,c,turnDir);
+
       
 
       
@@ -30,12 +31,9 @@ function zebraTime(row,col,size,color, turnDir){
     if(turnDir) { rotate(r); }
     else { rotate( -r ); }
     zebra();
-    hat();
     blendMode(LIGHTEST);
     fill(color);
-    rectMode(CENTER);
-    rect(row,col,50,50);
-    
+    mySquare();   
   pop();
 
 
