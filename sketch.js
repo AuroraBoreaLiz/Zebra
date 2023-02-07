@@ -31,11 +31,33 @@ function zebraTime(row,col,size,color,turnDir){
     var r = frameCount * 0.05;
     if(turnDir) { rotate(r); }
     else { rotate( -r ); }
-    zebra();
-   hat();
-    blendMode(LIGHTEST);
+    zebra(); 
+  pop();
+
+
+}
+
+function zebraTime(row,col,size,color,turnDir){
+  push();
+    translate(row,col);
+    var r = frameCount * 0.05;
+    if(turnDir) { rotate(r); }
+    else { rotate( -r ); }
+    //blendMode(LIGHTEST);
     fill(color);
-    mySquare(); 
+    zebra(); 
+  pop();
+
+}
+
+
+function hatTime(row,col,size,color,turnDir){
+  push();
+    translate(row,col);
+    var r = frameCount * 0.05;
+    if(turnDir) { rotate(r); }
+    else { rotate( -r ); }
+    hat(); 
   pop();
 
 
