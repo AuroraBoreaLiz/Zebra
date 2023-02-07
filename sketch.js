@@ -1,15 +1,17 @@
-var n = 8;
+
 function setup() {
-  createCanvas(400,400);
-  background(200);
-  var size = 0.5 * (width/n);
-  rectMode(CENTER);
-  for(var i = 0; i < n; i++) {
-    for(var j = 0; j < n; j++) {
-      var x = (0.5 + i) * (2 * size);
-      var y = (0.5 + j) * (2 * size);
+  createCanvas(400, 400);
+  background(220);
+  let gridSize = 80;
+  size = .5;
+  
+
+  for (let x = gridSize; x <= width - gridSize; x += gridSize) {
+    size = random(0.3,.5);
+    for (let y = gridSize; y <= height - gridSize; y += gridSize) {
+      size = random(0.3,.5);
       zebra(x, y, size);
+      
     }
   }
 }
-
