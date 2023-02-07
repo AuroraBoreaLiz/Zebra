@@ -12,8 +12,8 @@ function draw(){
     //size = random(0.3,.5);
     for (let col = gridSize; col <= height - gridSize; col += gridSize) {
       //size = random(0.3,.5);
-      var thisSize = size * (0.2 + 2 * noise(row + 83.5, col + 0.5));
-      var c = color(255, 255 * noise(row + 295, col), 0);
+      var thisSize = size * (0.2 + 2 * noise(row + 3, col + 0.5));
+      var c = color(255, 255 * noise(row + 2, col), 0);
       var turnDir = (noise(row,col) > 0.5);
       //drawShapes(row, col, thisSize, c, turnDir);
       blendIt(row,col,thisSize,c,turnDir);
@@ -31,6 +31,7 @@ function blendIt(row,col,size, color, turnDir){
   if(turnDir) { rotate(r); }
   else { rotate( -r ); }
   zebra(row, col, size);
+  pop();
 /*    push();
       blendMode(LIGHTEST);
       fill( random(0,225), random(0,225), random(0,225), 200);
