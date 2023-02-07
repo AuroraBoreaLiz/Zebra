@@ -12,14 +12,19 @@ function draw(){
     size = random(0.3,.5);
     for (let col = gridSize; col <= height - gridSize; col += gridSize) {
       size = random(0.3,.5);
-      zebra(row, col, size);
-      push();
-        blendMode(LIGHTEST);
-        fill( random(0,225), random(0,225), random(0,225), 200);
-        rect(row,col,50,50);
-      pop();
+      blendIt(row,col,size);
+      
+
       
     }
   }
 }
 
+function blendIt(row,col,size){
+  zebra(row, col, size);
+    push();
+      blendMode(LIGHTEST);
+      fill( random(0,225), random(0,225), random(0,225), 200);
+      rect(row,col,50,50);
+    pop();
+}
