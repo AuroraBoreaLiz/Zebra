@@ -24,7 +24,12 @@ function draw(){
   }
 }
 
-function blendIt(row,col,size){
+function blendIt(row,col,size, color, turnDir){
+  push();
+  translate(row,col);
+  var r = frameCount * 0.05;
+  if(turnDir) { rotate(r); }
+  else { rotate( -r ); }
   zebra(row, col, size);
 /*    push();
       blendMode(LIGHTEST);
