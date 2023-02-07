@@ -17,6 +17,8 @@ function setup() {
   createP("Rotation Speed")
   slider2 = createSlider(0,1.5,0.05,0);
   
+  var sizeA = 0.5;
+  
 
 }
   
@@ -25,29 +27,34 @@ function draw(){
   noStroke();
   rectMode(CENTER);
   let gridSize = 100;
-  size = 0.5;
+  let sizeA = 0.5;
+  
+  
    
   //Grids from https://p5js.org/examples/control-embedded-iteration.html
   for (let row = gridSize; row <= width - gridSize; row += gridSize) {
-    size = random(0.3,0.5);
     
     for (let col = gridSize; col <= height - gridSize; col += gridSize) {
-      size = random(0.3,0.5);
+      sizeA = noise(row+33, col);
       
-      var thisSize = size * (0.2 + 2 * noise(row + 3, col + 0.5));
+      var thisSize = sizeA * (0.2 + 2 * noise(row + 3, col + 5));
       
-      //color noise from in class code. Ended up not using once slider. Would like to integrate with slider somehow...
-      var c = color(noise(row,col), 225 * noise(row + 2, col), 225,200);
+      //color is HSB
+      var c = noise(row+15,col+50)*360;
       
+      //From class example
       var turnDir = (noise(row,col) > 0.5);
+      
       //used the class turnDir to split the hats and shades
-      var maybeHat = (noise(row,col) > 0.5);
-      var maybeShades = (noise(row,col) > 0.5);
+      var maybeHat1 = (noise(row+277,col) < 0.5);
+      var maybeHat2 = (noise(row,col+23) < 0.5);
+      var maybeShades = (noise(row+27,col) > 0.5);
       
       //creating different functions for each layer to prevent transform issues
       zebraTime(row,col,thisSize,turnDir);
       squareTime(row,col,thisSize,c,turnDir);
-      hatTime(row,col,thisSize,c,turnDir,maybeHat);
+      hatTime1(row,col,thisSize,c,turnDir,maybeHat1);
+      hatTime2(row,col,thisSize,c,turnDir,maybeHat2);
       sunglassesTime(row,col,thisSize,c,turnDir,maybeShades);
       
     }
@@ -58,6 +65,7 @@ function draw(){
 function zebraTime(row,col,thisSize,turnDir){
   push();
     translate(row,col);
+    scale(thisSize);
     var r = frameCount * slider2.value();
     if(turnDir) { 
       rotate(r); 
@@ -65,14 +73,14 @@ function zebraTime(row,col,thisSize,turnDir){
     else { 
       rotate( -r ); 
     }
-    zebra(size); 
+    zebra(thisSize); 
   pop();
 
 
 }
 
 //draw squares that sit on top of zebra. Use blend modes to change dark color of stripes. Can control stripe color and rotation speed. 
-function squareTime(row,col,size,color,turnDir,n){
+function squareTime(row,col,thisSize,c,turnDir,n){
   push();
     translate(row,col);
     var r = frameCount * slider2.value();
@@ -83,17 +91,18 @@ function squareTime(row,col,size,color,turnDir,n){
       rotate( -r ); 
     }
     blendMode(LIGHTEST);
-    fill(slider.value(), 225,225,127);
+    fill(slider.value(), 225,c-60,127);
     mySquare(); 
   pop();
 
 }
 
-//draw some red hats for the zebras rotating counter clock-wise. Can control with rotation slider. 
-function hatTime(row,col,size,color,turnDir,maybeHat){
+//draw some red hats for the zebras. Can control with rotation slider. 
+function hatTime1(row,col,thisSize,c,turnDir,maybeHat1){
   if (hat_checkbox.checked()) {
     push();
       translate(row,col);
+      scale(thisSize);
       var r = frameCount* slider2.value();
       if(turnDir) { 
         rotate(r); 
@@ -101,7 +110,7 @@ function hatTime(row,col,size,color,turnDir,maybeHat){
       else { 
         rotate( -r ); 
       }
-      if(maybeHat) {
+      if(maybeHat1) {
 
       }
       else {
@@ -114,11 +123,38 @@ function hatTime(row,col,size,color,turnDir,maybeHat){
 
 }
 
-//draw some sunglasses ont he zebras rotating clockwise. Can control with rotation slider. 
-function sunglassesTime(row,col,size,color,turnDir,maybeShade){
+//draw some red hats for the zebras. Can control with rotation slider. 
+function hatTime2(row,col,thisSize,c,turnDir,maybeHat2){
+  if (hat_checkbox.checked()) {
+    push();
+      translate(row,col);
+      scale(thisSize);
+      var r = frameCount* slider2.value();
+      if(turnDir) { 
+        rotate(r); 
+      }
+      else { 
+        rotate( -r ); 
+      }
+      if(maybeHat2) {
+
+      }
+      else {
+        hat2(); 
+      }
+    pop();
+
+  }
+  
+
+}
+
+//draw some sunglasses on the zebras. Can control with rotation slider. 
+function sunglassesTime(row,col,thisSize,c,turnDir,maybeShade){
   if (sunglass_checkbox.checked()) {
     push();
       translate(row,col);
+      scale(thisSize);
       var r = frameCount * slider2.value();
       if(turnDir) { 
         rotate(r); 
