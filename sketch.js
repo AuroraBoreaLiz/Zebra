@@ -1,43 +1,32 @@
-
+var n = 8;
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(400,400);
 }
-  
-function draw(){
-  background(220);
-  noStroke();
-  rectMode(CENTER);
-  let gridSize = 80;
-  size = .5;
-  for (let row = gridSize; row <= width - gridSize; row += gridSize) {
-    //size = random(0.3,.5);
-    for (let col = gridSize; col <= height - gridSize; col += gridSize) {
-      //size = random(0.3,.5);
-      var thisSize = size * (0.2 + 2 * noise(row + 3, col + 0.5));
-      var c = color(255, 255 * noise(row + 2, col), 0);
-      var turnDir = (noise(row,col) > 0.5);
-      //drawShapes(row, col, thisSize, c, turnDir);
-      blendIt(row,col,thisSize,c,turnDir);
-      
 
-      
+function draw() {
+  background(200);
+  var size = 0.5 * (width/n);
+  rectMode(CENTER);
+  for(var i = 0; i < n; i++) {  // which column?
+    for(var j = 0; j < n; j++) {  // which row?
+      var x = (0.5 + i) * (2 * size);
+      var y = (0.5 + j) * (2 * size);
+      var thisSize = size * (0.2 + 2 * noise(x + 83.5, y + 0.5));
+      var c = color(255, 255 * noise(x + 295, y), 0);
+      var turnDir = (noise(x,y) > 0.5);
+      drawShapes(x, y, thisSize, c, turnDir);
     }
   }
 }
 
-function blendIt(row,col,size, color, turnDir){
+function drawShapes(x, y, size, color, turnDir) {
   push();
-    translate(row,col);
-    var r = frameCount * 0.05;
-    if(turnDir) { rotate(r); }
-    else { rotate( -r ); }
-    zebra(row, col, size);
-    push();
-      blendMode(LIGHTEST);
-      fill( random(0,225), random(0,225), random(0,225), 200);
-      rect(row,col,50,50);
-    pop();
+  translate(x,y);
+  var r = frameCount * 0.05;
+  if(turnDir) { rotate(r); }
+  else { rotate( -r ); }
+  zebra(); // make a square
+  fill(color);
+  ellipse(0, 0, size/2, size/2); // circle;
   pop();
-
-
 }
