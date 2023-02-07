@@ -27,6 +27,6 @@ function drawShapes(x, y, size, color, turnDir) {
   else { rotate( -r ); }
   zebra(); // make a square
   fill(color);
-  ellipse(0, 0, size/2, size/2); // circle;
+  hat(); // circle;
   pop();
 }
