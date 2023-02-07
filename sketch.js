@@ -14,7 +14,7 @@ function setup() {
       zebra(row, col, size);
       push();
         blendMode(LIGHTEST);
-        fill( random(100,255), random(100,255), random(100,255), 200);
+        fill( random(0,200), random(0,200), random(0,200), 200);
         rect(row,col,50,50);
       pop();
       
