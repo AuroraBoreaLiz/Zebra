@@ -1,11 +1,15 @@
+var slider;
+
 function setup() {
   createCanvas(400, 400);
-  
+  colorMode(HSB,255);
+  slider = createSlider(0,225,127);
   // learned check box from this site https://compform.net/noise/
   createP("Some Hats?");
   hat_checkbox = createCheckbox("Hats", false);
   createP("Some Sunglasses?");
   sunglass_checkbox = createCheckbox("Sunglasses", false);
+  
 
 }
   
@@ -25,7 +29,7 @@ function draw(){
       var turnDir = (noise(row,col) > 0.5);
       var maybeHat = (noise(row,col) > 0.5);
       var maybeShades = (noise(row,col) > 0.5);
-      zebraTime(row,col,thisSize,c,turnDir);
+      zebraTime(row,col,thisSize,turnDir);
       squareTime(row,col,thisSize,c,turnDir);
       hatTime(row,col,thisSize,c,turnDir,maybeHat);
       sunglassesTime(row,col,thisSize,c,turnDir,maybeShades);
@@ -34,7 +38,7 @@ function draw(){
   }
 }
 
-function zebraTime(row,col,size,color,turnDir){
+function zebraTime(row,col,size,turnDir){
   push();
     translate(row,col);
     var r = frameCount * 0.05;
@@ -61,7 +65,7 @@ function squareTime(row,col,size,color,turnDir,n){
       rotate( -r ); 
     }
     blendMode(LIGHTEST);
-    fill(color);
+    fill(slider.value(), 225,225,127);
     mySquare(); 
   pop();
 
@@ -115,3 +119,5 @@ function sunglassesTime(row,col,size,color,turnDir,maybeShade){
   
 
 }
+
+
