@@ -1,4 +1,3 @@
-
 function setup() {
   createCanvas(400, 400);
   background(220);
@@ -6,12 +5,13 @@ function setup() {
   size = .5;
   
 
-  for (let x = gridSize; x <= width - gridSize; x += gridSize) {
+  for (let row = gridSize; row <= width - gridSize; row += gridSize) {
     size = random(0.3,.5);
-    for (let y = gridSize; y <= height - gridSize; y += gridSize) {
+    for (let col = gridSize; col <= height - gridSize; col += gridSize) {
       size = random(0.3,.5);
-      zebra(x, y, size);
+      zebra(row, col, size);
       
     }
   }
 }
+
