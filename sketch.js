@@ -13,8 +13,8 @@ function setup() {
       size = random(0.3,.5);
       zebra(row, col, size);
       push();
-        blendMode(MULTIPLY);
-        fill( random(0,255), random(0,255), random(0,255), 100);
+        blendMode(LIGHTEST);
+        fill( random(100,255), random(100,255), random(100,255), 200);
         rect(row,col,50,50);
       pop();
       
