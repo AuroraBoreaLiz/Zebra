@@ -13,11 +13,11 @@ function setup() {
       size = random(0.3,.5);
       zebra(row, col, size);
       push();
-      fill( random(0,255), random(0,255), random(0,255), 100);
-      rect(row,col,50,50);
+        blendMode(MULTIPLY);
+        fill( random(0,255), random(0,255), random(0,255), 100);
+        rect(row,col,50,50);
       pop();
       
     }
   }
 }
-
