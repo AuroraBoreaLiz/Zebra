@@ -1,23 +1,15 @@
-// var n=5;
-
-function setup(){
-  createCanvas(600,600);
-  background(220);
-  
-  // var d = 80
-  var size = .5
-  // var startX = 50
-  // var startY = 50
-  
-  var marginX = 80
-  var marginY = 80
-  
-  for(var col = marginX; col <= width - marginX; col+= marginX) {
-    size = random(0.3,.5);
-    for(var row = marginY; row <= height - marginY; row+=marginY) {
-      size = random(0.3,.5);
-      var x = col
-      var y = row
-      zebra(x, y, size)
+var n = 8;
+function setup() {
+  createCanvas(400,400);
+  background(200);
+  var size = 0.5 * (width/n);
+  rectMode(CENTER);
+  for(var i = 0; i < n; i++) {
+    for(var j = 0; j < n; j++) {
+      var x = (0.5 + i) * (2 * size);
+      var y = (0.5 + j) * (2 * size);
+      zebra(x, y, size);
     }
   }
+}
+
