@@ -1,3 +1,4 @@
+
 function setup() {
   createCanvas(400, 400);
 }
@@ -26,16 +27,17 @@ function draw(){
 
 function blendIt(row,col,size, color, turnDir){
   push();
-  translate(row,col);
-  var r = frameCount * 0.05;
-  if(turnDir) { rotate(r); }
-  else { rotate( -r ); }
-  zebra(row, col, size);
-  pop();
-/*    push();
+    translate(row,col);
+    var r = frameCount * 0.05;
+    if(turnDir) { rotate(r); }
+    else { rotate( -r ); }
+    zebra(row, col, size);
+    push();
       blendMode(LIGHTEST);
       fill( random(0,225), random(0,225), random(0,225), 200);
       rect(row,col,50,50);
     pop();
-*/
+  pop();
+
+
 }
