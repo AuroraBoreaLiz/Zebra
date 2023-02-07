@@ -16,7 +16,10 @@ function draw(){
       var c = color(noise(row,col), 225 * noise(row + 2, col), 225,200);
       var turnDir = (noise(row,col) > 0.5);
       zebraTime(row,col,thisSize,c,turnDir);
+      squareTime(row,col,thisSize,c,turnDir);
       hatTime(row,col,thisSize,c,turnDir);
+
+      
 
       
 
@@ -37,15 +40,15 @@ function zebraTime(row,col,size,color,turnDir){
 
 }
 
-function zebraTime(row,col,size,color,turnDir){
+function squareTime(row,col,size,color,turnDir){
   push();
     translate(row,col);
     var r = frameCount * 0.05;
     if(turnDir) { rotate(r); }
     else { rotate( -r ); }
-    //blendMode(LIGHTEST);
+    blendMode(LIGHTEST);
     fill(color);
-    zebra(); 
+    mySquare(); 
   pop();
 
 }
